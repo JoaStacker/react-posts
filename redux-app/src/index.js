@@ -18,12 +18,6 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-
-
-
-
-
-
 // import * as actions from "./src2/actionTypes"
 // import store from "./src2/store"
 // import  { bugAdded, bugResolved} from "./src2/actions"
