@@ -6,18 +6,14 @@ import App from './components/App';
 import { Provider } from "react-redux"//The <Provider> component makes the Redux store available to any nested components that need to access the Redux store
 import { createStore } from "redux";
 
-import rootReducer from "./services/reducers/index" //exported name of the ""
+import rootReducer from "./services/reducers/index" //exported name of the conbineReducers obj
 
 const store = createStore(rootReducer);
-store.dispatch({
-  type: "ADD_TO_CART",
-  data: []
-})
 console.warn("store data: ", store);
 
 ReactDOM.render(
   <Provider store={store}>
-    {/* <App /> */}
+    <App />
   </Provider>,
   document.getElementById('root')
 );
