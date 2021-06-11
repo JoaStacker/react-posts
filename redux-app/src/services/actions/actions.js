@@ -13,11 +13,11 @@ function addToCart (data) {
     }
 }
 
-function removeFromCart (id) {
-    console.warn("Action remove id: ", id)
+function removeFromCart (data) {
+    console.warn("Action remove id: ", data)
     return {
         type: REMOVE_FROM_CART,
-        id
+        name: data.name
     }
 } 
 

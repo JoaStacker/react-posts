@@ -15,7 +15,7 @@ export default function reducerCartItems (state=initialState, action) {
         case REMOVE_FROM_CART:
             return {
                 ...state,
-                cartData: [...state.cartData.filter(el => el.id !== action.id)] 
+                cartData: [...state.cartData.filter(el => el.name !== action.name)] 
             }
         default:
             return state
