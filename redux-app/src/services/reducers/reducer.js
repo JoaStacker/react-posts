@@ -1,8 +1,10 @@
+import {ADD_TO_CART} from "../constants"
+
 const initialState = {
-    cardData=[]
+    cardData: []
 }
 
-export default function cardItems (state=initialState, action) {
+export default function reducerCartItems (state=initialState, action) {
     switch(action.type){
         case ADD_TO_CART: 
             return {

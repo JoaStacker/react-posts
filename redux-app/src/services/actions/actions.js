@@ -11,3 +11,5 @@ function addToCart (data) {
         data: data
     }
 }
+
+export {addToCart}
