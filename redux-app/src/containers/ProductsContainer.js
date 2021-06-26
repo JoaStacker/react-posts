@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { addToCart, removeFromCart} from "../services/actions/actions" 
-import Home from '../components/Home'
+import Products from '../components/Products'
 
 const mapStateToProps = state => ({
     data: state
@@ -12,5 +12,5 @@ const mapDispatchToProps = dispatch => ({
     removeFromCartHandler: data => dispatch(removeFromCart(data)) 
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home); //The connect() function connects a React component to a Redux store.
+export default connect(mapStateToProps, mapDispatchToProps)(Products); //The connect() function connects a React component to a Redux store.
  

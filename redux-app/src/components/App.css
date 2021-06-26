@@ -1,4 +1,6 @@
-.home-container{
-  display: block;
+.product-container{
+  display: flex;
   
+  align-items: center;
+  justify-content: center;
 }
