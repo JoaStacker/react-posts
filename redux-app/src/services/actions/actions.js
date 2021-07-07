@@ -8,7 +8,7 @@ function addToCart (data) {
     console.warn("Action add: ", data)
     return {
         type: ADD_TO_CART,
-        data: data
+        data
     }
 }
 
