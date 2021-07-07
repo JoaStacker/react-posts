@@ -5,6 +5,16 @@ import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons'
 
 export const Contacts = ({contact}) => {
     const {name, phone, email} = contact
+
+    const handleEdit = () => {
+
+    }
+
+    const handleRemove = () => {
+        
+    }
+
+
     return (
            <tr>
                 <th scope="row">
@@ -18,10 +28,10 @@ export const Contacts = ({contact}) => {
                 <td>{phone}</td>
                 <td>{email}</td>
                 <td>
-                    <button className="btn">
+                    <button className="btn" onClick={handleEdit}>
                         <FontAwesomeIcon icon={faEdit} />
                     </button>
-                    <button className="btn">
+                    <button className="btn" onClick={handleRemove}>
                         <FontAwesomeIcon icon={faTrash} />
                     </button>   
                 </td>

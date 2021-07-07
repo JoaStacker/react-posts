@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Contacts } from './Contacts'
 
 export const Contact = () => {
-    const contacts = useSelector((state) => state.contacts);
+    const contacts = useSelector((state) => state.contactList.contacts);
     console.log(contacts);
     return (
         <div>
@@ -24,7 +24,7 @@ export const Contact = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {contacts.map((contact) => <Contacts contact={contact}/>)}
+                    {contacts.map((contact) => <Contacts key={contact.id} contact={contact}/>)}
                 </tbody>
             </table>
         </div>

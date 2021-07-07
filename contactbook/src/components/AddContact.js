@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { addContact } from '../store';
+import { addContact } from '../actions/contactAction'
+import shortid from 'shortid';
+import { useHistory } from 'react-router';
+
 
 const initialForm = {
     name: "",
@@ -11,17 +14,18 @@ const initialForm = {
 export const AddContact = () => {
     const [form, setForm] = useState(initialForm);
     const dispatch = useDispatch();
-
+    let history = useHistory();
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(addContact(form))
         setForm(initialForm)
+        history.push('/');
     }
 
     const handleChange = (e) => {
         setForm({
             ...form,
-            id: new Date().getTime(),
+            id: shortid.generate(),
             [e.target.name]: e.target.value
         })
     }
