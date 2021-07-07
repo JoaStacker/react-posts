@@ -1,41 +1,57 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { addContact } from '../actions/contactAction'
-import shortid from 'shortid';
+import { useSelector } from 'react-redux';
+import { getContact } from '../actions/contactAction'
+import { updateContact } from '../actions/contactAction'
 import { useHistory } from 'react-router';
-
+import { useParams } from 'react-router';
 
 const initialForm = {
     name: "",
     phone: "",
-    email: ""
+    email: "",
 }
 
-export const AddContact = () => {
+export const EditContact = () => {
     const [form, setForm] = useState(initialForm);
+
     const dispatch = useDispatch();
+    let {id} = useParams();
     let history = useHistory();
+    
+    const contact = useSelector((state) => state.contactList.contact);
+
+    useEffect(()=> {
+        dispatch(getContact(id))
+
+        if(contact != null){
+            let {name, phone, email} = contact
+            setForm({
+                id,
+                name, 
+                phone, 
+                email
+            })
+        }
+
+    }, [contact]);
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(addContact({ 
-            ...form, 
-            id: shortid.generate(),
-        }))
-        setForm(initialForm)
+        dispatch(updateContact(form));
         history.push('/');
     }
 
     const handleChange = (e) => {
         setForm({
             ...form,
-            id: shortid.generate(),
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
         })
     }
 
     return (
         <div>
-            <h1>Create contact</h1>
+            <h1>Edit contact</h1>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label for="exampleInputText1" className="form-label">Name</label>

@@ -2,18 +2,10 @@ import React from 'react';
 import Avatar from "react-avatar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom';
 
 export const Contacts = ({contact}) => {
-    const {name, phone, email} = contact
-
-    const handleEdit = () => {
-
-    }
-
-    const handleRemove = () => {
-        
-    }
-
+    const {id, name, phone, email} = contact
 
     return (
            <tr>
@@ -28,12 +20,12 @@ export const Contacts = ({contact}) => {
                 <td>{phone}</td>
                 <td>{email}</td>
                 <td>
-                    <button className="btn" onClick={handleEdit}>
+                    <Link to={`/contacts/edit/${id}`}>
                         <FontAwesomeIcon icon={faEdit} />
-                    </button>
-                    <button className="btn" onClick={handleRemove}>
+                    </Link>
+                    <Link to="/">
                         <FontAwesomeIcon icon={faTrash} />
-                    </button>   
+                    </Link>   
                 </td>
             </tr> 
     )

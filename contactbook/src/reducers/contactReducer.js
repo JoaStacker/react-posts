@@ -1,7 +1,9 @@
+import { CREATE_CONTACT, GET_CONTACT, UPDATE_CONTACT } from "../constants/types"
+
 const initialState = {
     contacts: [
         {
-        "id": 1,
+        "id": "1",
         "name": "Leanne Graham",
         "username": "Bret",
         "email": "Sincere@april.biz",
@@ -24,7 +26,7 @@ const initialState = {
         }
         },
         {
-        "id": 2,
+        "id": "2",
         "name": "Ervin Howell",
         "username": "Antonette",
         "email": "Shanna@melissa.tv",
@@ -47,7 +49,7 @@ const initialState = {
         }
         },
         {
-        "id": 3,
+        "id": "3",
         "name": "Clementine Bauch",
         "username": "Samantha",
         "email": "Nathan@yesenia.net",
@@ -70,7 +72,7 @@ const initialState = {
         }
         },
         {
-        "id": 4,
+        "id": "4",
         "name": "Patricia Lebsack",
         "username": "Karianne",
         "email": "Julianne.OConner@kory.org",
@@ -93,7 +95,7 @@ const initialState = {
         }
         },
         {
-        "id": 5,
+        "id": "5",
         "name": "Chelsey Dietrich",
         "username": "Kamren",
         "email": "Lucio_Hettinger@annie.ca",
@@ -116,7 +118,7 @@ const initialState = {
         }
         },
         {
-        "id": 6,
+        "id": "6",
         "name": "Mrs. Dennis Schulist",
         "username": "Leopoldo_Corkery",
         "email": "Karley_Dach@jasper.info",
@@ -139,7 +141,7 @@ const initialState = {
         }
         },
         {
-        "id": 7,
+        "id": "7",
         "name": "Kurtis Weissnat",
         "username": "Elwyn.Skiles",
         "email": "Telly.Hoeger@billy.biz",
@@ -162,7 +164,7 @@ const initialState = {
         }
         },
         {
-        "id": 8,
+        "id": "8",
         "name": "Nicholas Runolfsdottir V",
         "username": "Maxime_Nienow",
         "email": "Sherwood@rosamond.me",
@@ -185,7 +187,7 @@ const initialState = {
         }
         },
         {
-        "id": 9,
+        "id": "9",
         "name": "Glenna Reichert",
         "username": "Delphine",
         "email": "Chaim_McDermott@dana.io",
@@ -208,7 +210,7 @@ const initialState = {
         }
         },
         {
-        "id": 10,
+        "id": "10",
         "name": "Clementina DuBuque",
         "username": "Moriah.Stanton",
         "email": "Rey.Padberg@karina.biz",
@@ -230,15 +232,26 @@ const initialState = {
         "bs": "target end-to-end models"
         }
         }
-        ]
+        ],
+    contact: null,
 }
-
 export const contactReducer = ( state = initialState, action ) => {   
     switch(action.type) {
-        case "CREATE_CONTACT": 
+        case CREATE_CONTACT: 
             return {
                 ...state,
                 contacts: [action.payload, ...state.contacts]
+            }
+        case GET_CONTACT:
+            let contact = state.contacts.find(el => el.id === action.payload)
+            return {
+                ...state,
+                contact
+            }
+        case UPDATE_CONTACT: 
+            return {
+                ...state,
+                contacts: [...state.contacts.filter(el => el.id !== action.payload.id), action.payload],
             }
         default: 
             return state;
