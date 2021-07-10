@@ -4,16 +4,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons'
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { deleteContact } from '../../actions/contactAction';
+import { applySelectOne, deleteContact } from '../../actions/contactAction';
 
-export const Contacts = ({contact}) => {
-    const {id, name, phone, email} = contact
+export const Contacts = ({ contact }) => {
+    const {id, name, phone, email, selected} = contact
+    console.log(selected)
     const history = useHistory();
     const dispatch = useDispatch();
 
     const handleDelete = () => {
         let del = window.confirm('Are you sure you want to delete this contact?');
-        console.log(del)
         if(!del) return;
         dispatch(deleteContact(id));
         history.push("/");
@@ -23,7 +23,7 @@ export const Contacts = ({contact}) => {
         <tr>
             <th scope="row">
                 <div className="custom-control custom-checkbox">
-                    <input type="checkbox"/>
+                    <input type="checkbox" checked={selected} onClick={() => {dispatch(applySelectOne(id))}}/>
                     <label className="custom-control-label"></label>
                 </div>
             </th>

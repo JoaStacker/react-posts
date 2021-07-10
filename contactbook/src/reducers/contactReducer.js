@@ -1,8 +1,9 @@
-import { CREATE_CONTACT, GET_CONTACT, UPDATE_CONTACT, DELETE_CONTACT} from "../constants/types"
+import { CREATE_CONTACT, GET_CONTACT, UPDATE_CONTACT, DELETE_CONTACT, SELECT_ALL, SELECT_ONE, DELETE_ALL} from "../constants/types"
 
 const initialState = {
     contacts: [
         {
+        "selected": false,
         "id": "1",
         "name": "Leanne Graham",
         "username": "Bret",
@@ -26,6 +27,7 @@ const initialState = {
         }
         },
         {
+        "selected": false,
         "id": "2",
         "name": "Ervin Howell",
         "username": "Antonette",
@@ -49,6 +51,7 @@ const initialState = {
         }
         },
         {
+            "selected": false,
         "id": "3",
         "name": "Clementine Bauch",
         "username": "Samantha",
@@ -72,6 +75,7 @@ const initialState = {
         }
         },
         {
+            "selected": false,
         "id": "4",
         "name": "Patricia Lebsack",
         "username": "Karianne",
@@ -95,6 +99,7 @@ const initialState = {
         }
         },
         {
+            "selected": false,
         "id": "5",
         "name": "Chelsey Dietrich",
         "username": "Kamren",
@@ -118,6 +123,7 @@ const initialState = {
         }
         },
         {
+            "selected": false,
         "id": "6",
         "name": "Mrs. Dennis Schulist",
         "username": "Leopoldo_Corkery",
@@ -141,6 +147,7 @@ const initialState = {
         }
         },
         {
+            "selected": true,
         "id": "7",
         "name": "Kurtis Weissnat",
         "username": "Elwyn.Skiles",
@@ -164,6 +171,7 @@ const initialState = {
         }
         },
         {
+            "selected": false,
         "id": "8",
         "name": "Nicholas Runolfsdottir V",
         "username": "Maxime_Nienow",
@@ -187,6 +195,7 @@ const initialState = {
         }
         },
         {
+            "selected": false,
         "id": "9",
         "name": "Glenna Reichert",
         "username": "Delphine",
@@ -210,6 +219,7 @@ const initialState = {
         }
         },
         {
+            "selected": false,
         "id": "10",
         "name": "Clementina DuBuque",
         "username": "Moriah.Stanton",
@@ -235,6 +245,7 @@ const initialState = {
         ],
     contact: null,
 }
+
 export const contactReducer = ( state = initialState, action ) => {   
     switch(action.type) {
         case CREATE_CONTACT: 
@@ -256,7 +267,25 @@ export const contactReducer = ( state = initialState, action ) => {
         case DELETE_CONTACT: 
             return {
                 ...state,
-                contacts: [...state.contacts.filter(el => el.id !== action.payload)],
+                contacts: state.contacts.filter(el => el.id !== action.payload),
+            }
+        case SELECT_ALL:
+            state.contacts.forEach(el => el.selected = action.payload);
+            return {
+                ...state
+            }
+        case SELECT_ONE: 
+            const selectedContact = state.contacts.find(el => el.id === action.payload);
+            console.log(selectedContact);
+            selectedContact.selected = selectedContact.selected ? false : true;
+            return {
+                ...state,
+                contacts: [...state.contacts],
+            }
+        case DELETE_ALL: 
+            return {
+                ...state,
+                contacts: [],
             }
         default: 
             return state;
