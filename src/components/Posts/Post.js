@@ -16,7 +16,7 @@ const Post = () => {
   };
 
   if (!post) {
-    return <h1>loading..</h1>;
+    return <h1>loading...</h1>;
   }
   return (
     <div>

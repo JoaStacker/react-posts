@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import shortid from "shortid";
+// import shortid from "shortid";
 import { createPost } from "../../actions/postAction";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -13,7 +13,7 @@ const AddPost = () => {
   const submitForm = (e) => {
     e.preventDefault();
     const new_post = {
-      id: shortid.generate(),
+      // id: shortid.generate(),
       title: title,
       body: body,
     };

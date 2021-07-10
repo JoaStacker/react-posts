@@ -22,7 +22,11 @@ const PostCard = ({ postItem }) => {
         </Link>
         <button
           className="btn btn-danger btn-delete"
-          onClick={() => dispatch(deletePost(postItem.id))}
+          onClick={() => {
+            const verificar = window.confirm("Are you sure you want to delete this post?");
+            if(!verificar) return
+            dispatch(deletePost(postItem.id))
+          }}
         >
           <span class="material-icons">delete_outline</span>
         </button>
